@@ -1,9 +1,11 @@
 package ru.effectivemobile.microserviceauthentication.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.effectivemobile.microserviceauthentication.model.Role;
 import ru.effectivemobile.microserviceauthentication.model.User;
@@ -19,8 +21,11 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> getAllUsers() {
@@ -36,6 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public Optional<User> createUser(User customer) {
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return Optional.of(userRepository.save(customer));
     }
 

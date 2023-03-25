@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +17,8 @@ import ru.effectivemobile.microserviceauthentication.security.jwt.JwtResponse;
 import ru.effectivemobile.microserviceauthentication.security.jwt.service.impl.JwtTokenServiceImpl;
 import ru.effectivemobile.microserviceauthentication.service.UserService;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping(path = AuthenticationController.BASE_URL)
@@ -23,7 +26,7 @@ public class AuthenticationController {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);
 
-    public static final String BASE_URL = "/api/v1/authentication";
+    public static final String BASE_URL = "/api/v1/";
 
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
@@ -34,16 +37,17 @@ public class AuthenticationController {
         this.authenticationManager = authenticationManager;
         this.jwtTokenServiceImpl = jwtTokenServiceImpl;
     }
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
-        User user;
         try {
+            User user;
             user = userService.createUser(UserDto.toUser(userDto)).orElseThrow();
+            return ResponseEntity.ok(user);
         } catch (Exception e) {
             LOG.error("Failed to register user", e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/authenticate")
@@ -62,6 +66,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         User user = userService.findById(id).orElse(null);
@@ -74,6 +79,7 @@ public class AuthenticationController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         User user = userService.findById(id).orElse(null);
         if (user == null) {
@@ -99,8 +105,8 @@ public class AuthenticationController {
     public ResponseEntity<UserDto> getUserInfo(@RequestParam("token") String token){
          UserDetails userDetails = jwtTokenServiceImpl.getUserDetailsFromToken(token);
          try {
-             User user = userService.findByUsername(userDetails.getUsername()).orElseThrow();
-             return ResponseEntity.ok(UserDto.toDto(user));
+             Optional<User> user = userService.findByUsername(userDetails.getUsername());
+             return ResponseEntity.ok(UserDto.toDto(user.get()));
          }catch (Exception e){
              LOG.error("Doesn't find user with this token", e);
              return ResponseEntity.notFound().build();

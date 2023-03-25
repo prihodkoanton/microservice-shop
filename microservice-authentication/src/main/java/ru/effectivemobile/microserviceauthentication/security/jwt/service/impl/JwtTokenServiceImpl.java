@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import ru.effectivemobile.microserviceauthentication.security.jwt.service.JwtTokenService;
 
 import java.util.Date;
 
 @Service
-public class JwtTokenServiceImpl {
+public class JwtTokenServiceImpl implements JwtTokenService {
 
     @Value("${spring.security.jwt.secret}")
     private String secretKey;
