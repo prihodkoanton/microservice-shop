@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ru.effectivemobile.microserviceauthentication.security.jwt.service.JwtTokenService;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Service
@@ -21,7 +22,9 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
     private final UserDetailsService userDetailsService;
 
-    public JwtTokenServiceImpl(UserDetailsService userDetailsService) {
+    public JwtTokenServiceImpl(@Value("${spring.security.jwt.secret}") String secretKey,
+                               @Value("${spring.security.jwt.token-validity-milliseconds}") long tokenValidityMilliseconds,
+                               UserDetailsService userDetailsService) {
         this.secretKey = secretKey;
         this.tokenValidityMilliseconds = tokenValidityMilliseconds;
         this.userDetailsService = userDetailsService;

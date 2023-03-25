@@ -103,8 +103,8 @@ public class AuthenticationController {
 
     @GetMapping("/getUserInfo")
     public ResponseEntity<UserDto> getUserInfo(@RequestParam("token") String token){
-         UserDetails userDetails = jwtTokenServiceImpl.getUserDetailsFromToken(token);
          try {
+             UserDetails userDetails = jwtTokenServiceImpl.getUserDetailsFromToken(token);
              Optional<User> user = userService.findByUsername(userDetails.getUsername());
              return ResponseEntity.ok(UserDto.toDto(user.get()));
          }catch (Exception e){

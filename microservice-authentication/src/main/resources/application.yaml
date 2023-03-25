@@ -17,8 +17,8 @@ spring:
     jwt:
       secret: NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7otZcyAagBLHVKvvYaIpmMuxmARQ97jUVG16Jkpkp1wXOPsrF9zwew6TpczyHkHgX5EuLg2MeBuiT/qJACs1J0apruOOJCg/gOtkjB4c=
       token-prefix: Bearer
-      token-validity-milliseconds: 864000000000000
-      clock-skew-milliseconds: 864000000000000
+      token-validity-milliseconds: 8640000000001950142
+      clock-skew-milliseconds: 8640000000001950142
 server:
   port: 8080
 logging:
