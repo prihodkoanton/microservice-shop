@@ -1,0 +1,13 @@
+
+d
+java:S2259%"IA "NullPointerException" could be thrown; "userDetails" is nullable here.(ªõºÃşÿÿÿÿ
+K
+java:S1874"0Remove this use of "signWith"; it is deprecated.(´²­úÿÿÿÿ
+C
+java:S18743".Remove this use of "parser"; it is deprecated.(õêÊ
+J
+java:S18743"5Remove this use of "setSigningKey"; it is deprecated.(õêÊ
+I
+java:S1874@".Remove this use of "parser"; it is deprecated.(ö¨Â‘ÿÿÿÿÿ
+P
+java:S1874@"5Remove this use of "setSigningKey"; it is deprecated.(ö¨Â‘ÿÿÿÿÿ

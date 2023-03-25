@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/microservice-authentication/microservice-authentication.iml" filepath="$PROJECT_DIR$/microservice-authentication/microservice-authentication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-order/microservice-order.iml" filepath="$PROJECT_DIR$/microservice-order/microservice-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-organization/microservice-organization.iml" filepath="$PROJECT_DIR$/microservice-organization/microservice-organization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-microservices.iml" filepath="$PROJECT_DIR$/shop-microservices.iml" />
+    </modules>
+  </component>
+</project>

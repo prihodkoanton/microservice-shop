@@ -1,0 +1,19 @@
+
+’
+java:S4165"wRemove this useless assignment; "tokenValidityMilliseconds" already holds the assigned value along all execution paths.(§¾´Çüÿÿÿÿ
+}
+java:S4165"gRemove this useless assignment; "secretKey" already holds the assigned value along all execution paths.(«¡…¶
+K
+java:S1874$"0Remove this use of "signWith"; it is deprecated.(´²­úÿÿÿÿ
+I
+java:S18743".Remove this use of "parser"; it is deprecated.(ö¨Â‘ÿÿÿÿÿ
+P
+java:S18743"5Remove this use of "setSigningKey"; it is deprecated.(ö¨Â‘ÿÿÿÿÿ
+C
+java:S18747".Remove this use of "parser"; it is deprecated.(õêÊ
+J
+java:S18747"5Remove this use of "setSigningKey"; it is deprecated.(õêÊ
+E
+java:S1656"/Remove or correct this useless self-assignment.(«¡…¶
+J
+java:S1656"/Remove or correct this useless self-assignment.(§¾´Çüÿÿÿÿ
