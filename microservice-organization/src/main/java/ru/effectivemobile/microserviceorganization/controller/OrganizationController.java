@@ -38,7 +38,7 @@ public class OrganizationController {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<UserCredentials> request = new HttpEntity<>(credentials, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(authenticationServiceUrl + "/api/v1/authenticate", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(authenticationServiceUrl + "/authenticate", request, String.class);
         return ResponseEntity.ok(response.getBody());
     }
 

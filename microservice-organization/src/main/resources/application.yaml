@@ -14,7 +14,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
   authenticationServiceUrl:
-    value: microservice-authentication:8080/api/v1/authenticate
+    value: http://localhost:8080/api/v1/
 server:
   port: 8082
 logging:
