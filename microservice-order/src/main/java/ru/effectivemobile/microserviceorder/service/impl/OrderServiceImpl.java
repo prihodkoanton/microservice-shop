@@ -82,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public List<Order> findByOrderStatus(OrderStatus status) {
-        return orderRepository.findByOrderStatus(status);
+        return orderRepository.findByStatus(status);
     }
 
     public List<Order> findByCreatedBetween(LocalDateTime startDate, LocalDateTime endDate) {
@@ -94,19 +94,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public List<Order> findByCustomerAndOrganization(Customer customer, Organization organization) {
-        return orderRepository.findByCustomerAndOrganization(customer, organization);
+        return orderRepository.findByCustomerIdAndOrganizationId(customer, organization);
     }
 
     public List<Order> findByCustomerAndStatus(Customer customer, OrderStatus status) {
-        return orderRepository.findByCustomerAndStatus(customer, status);
+        return orderRepository.findByCustomerIdAndStatus(customer, status);
     }
 
     public List<Order> findByOrganizationAndStatus(Organization organization, OrderStatus status) {
-        return orderRepository.findByOrganizationAndStatus(organization, status);
+        return orderRepository.findByOrganizationIdAndStatus(organization, status);
     }
 
     public List<Order> findByCustomerAndOrganizationAndStatus(Customer customer, Organization organization, OrderStatus status) {
-        return orderRepository.findByCustomerAndOrganizationAndStatus(customer, organization, status);
+        return orderRepository.findByCustomerIdAndOrganizationIdAndStatus(customer, organization, status);
     }
 
     public Order updateOrder(Long id, OrderRequest orderRequest) {

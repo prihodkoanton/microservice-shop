@@ -21,7 +21,7 @@ public class OrderItem implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     @JsonIgnore
     private Product product;
 
@@ -29,7 +29,7 @@ public class OrderItem implements Serializable {
     private Integer quantity;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     @JsonIgnore
     private Order order;
 }

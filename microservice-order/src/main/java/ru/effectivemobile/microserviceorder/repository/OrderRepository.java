@@ -11,8 +11,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByCustomerId(Long customerId);
 
-    @Query(value = "select * from orders o where o.status=?1", nativeQuery = true)
-    List<Order> findByOrderStatus(OrderStatus status);
+    List<Order> findByStatus(OrderStatus status);
 
     List<Order> findByOrganizationId(Long organizationId);
 
@@ -20,18 +19,15 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findAllByOrderItemsContaining(OrderItem orderItem);
 
-    List<Order> findByCustomerAndOrganization(Customer customer, Organization organization);
+    List<Order> findByCustomerIdAndOrganizationId(Customer customer, Organization organization);
 
-    List<Order> findByCustomerAndStatus(Customer customer, OrderStatus status);
+    List<Order> findByCustomerIdAndStatus(Customer customer, OrderStatus status);
 
-    List<Order> findByOrganizationAndStatus(Organization organization, OrderStatus status);
+    List<Order> findByOrganizationIdAndStatus(Organization organization, OrderStatus status);
 
     @Query(value = "select * from orders o where o.customer_id =?1 AND o.organization_id =?2 AND o.status=?3", nativeQuery = true)
-    List<Order> findByCustomerAndOrganizationAndStatus(Customer customer, Organization organization, OrderStatus status);
+    List<Order> findByCustomerIdAndOrganizationIdAndStatus(Customer customer, Organization organization, OrderStatus status);
 
     @Query(value = "UPDATE orders o set o.status =?2 where o.id =?1", nativeQuery = true)
     Order updateStatus(Long id, OrderStatus status);
 }
-//WHERE
-//	first_name = 'Jamie' AND
-//        last_name = 'Rice';

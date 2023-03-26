@@ -24,16 +24,16 @@ public class Order implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "organization_id")
+    @JoinColumn(name = "organization_id", referencedColumnName = "id")
     private Organization organization;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private OrderStatus status;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 
     @Column(name = "created")
     private LocalDateTime created;
@@ -42,7 +42,9 @@ public class Order implements Serializable {
     private LocalDateTime updated;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
+
+
 }

@@ -30,7 +30,7 @@ public class Product {
     private BigDecimal price;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
