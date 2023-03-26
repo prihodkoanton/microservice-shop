@@ -33,7 +33,7 @@ public class OrderController {
 
     public OrderController(OrderService orderService, RestTemplate restTemplate) {
         this.orderService = orderService;
-        this.restTemplate =restTemplate;
+        this.restTemplate = restTemplate;
     }
 
     @PostMapping("/authenticate")
@@ -47,9 +47,11 @@ public class OrderController {
     }
 
     @GetMapping()
-    public List<Order> getOrders() {
-        List<Order> orders = orderService.findAll();
-        return orders;
+    public ResponseEntity<List<OrderDTO>> getOrders() {
+        List<OrderDTO> orders = orderService.findAll().stream().map(toDto ->
+                OrderDTO.toOrderDTO(toDto)
+        ).collect(Collectors.toList());
+        return ResponseEntity.ok(orders);
     }
 
     @PostMapping()

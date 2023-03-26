@@ -43,45 +43,45 @@ public class OrganizationController {
     }
 
     @GetMapping
-    public List<OrganizationDto> getAllOrganizations() {
+    public ResponseEntity<List<OrganizationDto>> getAllOrganizations() {
         List<Organization> organizations = organizationService.findAll();
-        return organizations.stream()
+        return ResponseEntity.ok(organizations.stream()
                 .map(OrganizationDto::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
-    public OrganizationDto getOrganizationById(@PathVariable Long id) {
+    public ResponseEntity<OrganizationDto> getOrganizationById(@PathVariable Long id) {
         Organization organization = organizationService.findById(id);
-        return new OrganizationDto(organization);
+        return ResponseEntity.ok(new OrganizationDto(organization));
     }
 
     @GetMapping("/name/{name}")
-    public List<OrganizationDto> getOrganizationByName(@PathVariable String name) {
+    public ResponseEntity<List<OrganizationDto>> getOrganizationByName(@PathVariable String name) {
         List<Organization> organizations = organizationService.findByName(name);
-        return organizations.stream()
+        return ResponseEntity.ok(organizations.stream()
                 .map(OrganizationDto::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/status/{status}")
-    public List<OrganizationDto> getOrganizationByStatus(@PathVariable OrganizationStatus status) {
+    public ResponseEntity<List<OrganizationDto>> getOrganizationByStatus(@PathVariable OrganizationStatus status) {
         List<Organization> organizations = organizationService.findByStatus(status);
-        return organizations.stream()
+        return ResponseEntity.ok(organizations.stream()
                 .map(OrganizationDto::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     @PostMapping
     public ResponseEntity<OrganizationDto> createOrganization(@Valid @RequestBody OrganizationDto organizationDto) {
-        Organization organization = organizationService.create(organizationDto.toOrganization());
+        Organization organization = organizationService.create(OrganizationDto.toOrganization(organizationDto));
         OrganizationDto createdDto = new OrganizationDto(organization);
         return new ResponseEntity<>(createdDto, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<OrganizationDto> updateOrganization(@PathVariable Long id, @Valid @RequestBody OrganizationDto organizationDto) {
-        Organization organization = organizationDto.toOrganization();
+        Organization organization = OrganizationDto.toOrganization(organizationDto);
         organization.setId(id);
         organization = organizationService.update(organization);
         OrganizationDto updatedDto = new OrganizationDto(organization);

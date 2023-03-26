@@ -50,7 +50,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public List<Organization> findByStatus(OrganizationStatus status) {
-        List<Organization> organizations = organizationRepository.findByOrganizationStatus(status);
+        List<Organization> organizations = organizationRepository.findByStatus(status);
         return organizations;
     }
 

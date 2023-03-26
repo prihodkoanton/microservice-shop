@@ -29,8 +29,8 @@ public class Organization {
     private String logoUrl;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private OrganizationStatus organizationStatus;
+    @Column(name = "status")
+    private OrganizationStatus status;
 
     @Column(name = "createdAt")
     private LocalDateTime createdAt;

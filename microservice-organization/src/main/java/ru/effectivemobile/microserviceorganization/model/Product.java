@@ -35,7 +35,7 @@ public class Product {
     private Organization organization;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "status")
     private ProductStatus productStatus;
 
     @Column(name = "createdAt")
