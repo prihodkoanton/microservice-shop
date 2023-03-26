@@ -3,7 +3,7 @@ CREATE TABLE orders
     id              BIGSERIAL   NOT NULL,
     customer_id     bigint      NOT NULL,
     organization_id bigint      NOT NULL,
-    status    VARCHAR(20) NOT NULL DEFAULT 'NOT_COMPLETED',
+    status          VARCHAR(20) NOT NULL DEFAULT 'NOT_COMPLETED',
     created         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated         TIMESTAMP   NOT NULL,
     CONSTRAINT order_pkey PRIMARY KEY (id),

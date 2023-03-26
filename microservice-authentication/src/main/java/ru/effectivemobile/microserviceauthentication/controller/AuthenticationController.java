@@ -91,7 +91,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/validateToken")
-    public ResponseEntity<Boolean> validateToken(@RequestBody String token){
+    public ResponseEntity<Boolean> validateToken(@RequestBody String token) {
         try {
             jwtTokenServiceImpl.validateToken(token);
             return ResponseEntity.ok(true);
@@ -102,24 +102,24 @@ public class AuthenticationController {
     }
 
     @GetMapping("/getUserInfo")
-    public ResponseEntity<UserDto> getUserInfo(@RequestParam("token") String token){
-         try {
-             UserDetails userDetails = jwtTokenServiceImpl.getUserDetailsFromToken(token);
-             Optional<User> user = userService.findByUsername(userDetails.getUsername());
-             return ResponseEntity.ok(UserDto.toDto(user.get()));
-         }catch (Exception e){
-             LOG.error("Doesn't find user with this token", e);
-             return ResponseEntity.notFound().build();
-         }
+    public ResponseEntity<UserDto> getUserInfo(@RequestParam("token") String token) {
+        try {
+            UserDetails userDetails = jwtTokenServiceImpl.getUserDetailsFromToken(token);
+            Optional<User> user = userService.findByUsername(userDetails.getUsername());
+            return ResponseEntity.ok(UserDto.toDto(user.get()));
+        } catch (Exception e) {
+            LOG.error("Doesn't find user with this token", e);
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/refreshToke")
-    public ResponseEntity<JwtResponse> refreshToken(@RequestParam("tokenRefreshRequest") String tokenRefreshRequest){
+    public ResponseEntity<JwtResponse> refreshToken(@RequestParam("tokenRefreshRequest") String tokenRefreshRequest) {
 
         try {
             final String token = jwtTokenServiceImpl.refreshToken(tokenRefreshRequest);
             return ResponseEntity.ok(new JwtResponse(token));
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error("Invalid refresh token", e);
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }

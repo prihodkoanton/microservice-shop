@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 public class MicroserviceConfig {
 
     @Bean
-    public RestTemplate restTemplate(){
-        return  new RestTemplate();
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

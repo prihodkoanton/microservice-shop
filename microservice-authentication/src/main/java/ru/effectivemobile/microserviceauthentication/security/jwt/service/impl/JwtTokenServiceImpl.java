@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ru.effectivemobile.microserviceauthentication.security.jwt.service.JwtTokenService;
 
-import java.time.Instant;
 import java.util.Date;
 
 @Service

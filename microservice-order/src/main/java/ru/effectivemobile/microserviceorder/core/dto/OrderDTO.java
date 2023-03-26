@@ -2,7 +2,8 @@ package ru.effectivemobile.microserviceorder.core.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import ru.effectivemobile.microserviceorder.core.model.*;
+import ru.effectivemobile.microserviceorder.core.model.Order;
+import ru.effectivemobile.microserviceorder.core.model.OrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class OrderDTO {
 
     private List<OrderItemDTO> orderItems = new ArrayList<>();
 
-    public static Order toOrder(OrderDTO orderDTO){
+    public static Order toOrder(OrderDTO orderDTO) {
         Order order = new Order();
         order.setId(orderDTO.getId());
         order.setCustomer(CustomerDTO.toCustomer(orderDTO.getCustomer()));
@@ -30,10 +31,10 @@ public class OrderDTO {
         order.setCreated(orderDTO.getCreated());
         order.setUpdated(orderDTO.getUpdated());
         order.setOrderItems(OrderItemDTO.toOrderItemList(orderDTO.getOrderItems()));
-        return  order;
+        return order;
     }
 
-    public static OrderDTO toOrderDTO(Order order){
+    public static OrderDTO toOrderDTO(Order order) {
         OrderDTO dto = new OrderDTO();
         dto.setId(order.getId());
         dto.setCustomer(CustomerDTO.toCustomerDTO(order.getCustomer()));

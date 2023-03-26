@@ -10,7 +10,7 @@ public class OrganizationDTO {
 
     private Organization organization;
 
-    public static Organization toOrganization(OrganizationDTO dto){
+    public static Organization toOrganization(OrganizationDTO dto) {
         Organization organizationFromDto = new Organization();
         return organizationFromDto;
     }

@@ -15,7 +15,7 @@ public class CustomerDTO {
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    public static Customer toCustomer(CustomerDTO customerDTO){
+    public static Customer toCustomer(CustomerDTO customerDTO) {
         Customer customer = new Customer();
         customer.setId(customerDTO.getId());
         customer.setName(customerDTO.getName());
@@ -25,7 +25,7 @@ public class CustomerDTO {
         return customer;
     }
 
-    public static CustomerDTO toCustomerDTO(Customer customer){
+    public static CustomerDTO toCustomerDTO(Customer customer) {
         CustomerDTO dto = new CustomerDTO();
         dto.setId(customer.getId());
         dto.setName(customer.getName());

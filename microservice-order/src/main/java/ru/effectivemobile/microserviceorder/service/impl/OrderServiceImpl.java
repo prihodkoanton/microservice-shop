@@ -1,10 +1,10 @@
 package ru.effectivemobile.microserviceorder.service.impl;
 
+import org.springframework.stereotype.Service;
 import ru.effectivemobile.microserviceorder.core.exceptions.*;
 import ru.effectivemobile.microserviceorder.core.model.*;
 import ru.effectivemobile.microserviceorder.core.requests.OrderItemRequest;
 import ru.effectivemobile.microserviceorder.core.requests.OrderRequest;
-import org.springframework.stereotype.Service;
 import ru.effectivemobile.microserviceorder.repository.CustomerRepository;
 import ru.effectivemobile.microserviceorder.repository.OrderRepository;
 import ru.effectivemobile.microserviceorder.repository.OrganizationRepository;

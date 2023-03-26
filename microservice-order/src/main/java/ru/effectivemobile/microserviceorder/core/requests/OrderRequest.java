@@ -1,10 +1,10 @@
 package ru.effectivemobile.microserviceorder.core.requests;
 
-import ru.effectivemobile.microserviceorder.core.model.OrderStatus;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import ru.effectivemobile.microserviceorder.core.model.OrderStatus;
 
 import java.util.List;
 

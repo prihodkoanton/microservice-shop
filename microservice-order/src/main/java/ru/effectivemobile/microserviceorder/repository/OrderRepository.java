@@ -13,8 +13,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query(value = "select * from orders o where o.status=?1", nativeQuery = true)
     List<Order> findByOrderStatus(OrderStatus status);
+
     List<Order> findByOrganizationId(Long organizationId);
+
     List<Order> findByCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
+
     List<Order> findAllByOrderItemsContaining(OrderItem orderItem);
 
     List<Order> findByCustomerAndOrganization(Customer customer, Organization organization);

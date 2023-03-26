@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     Optional<Customer> findByName(String name);
+
     Optional<Customer> findByEmail(String email);
+
     List<Customer> findByCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
 }
