@@ -61,7 +61,7 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id) {
+    public ResponseEntity<OrderDTO> getOrderById(@PathVariable ("id") Long id) {
         Order order = orderService.findById(id);
         if (order == null) {
             return ResponseEntity.notFound().build();
@@ -70,7 +70,7 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long id, @RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<OrderDTO> updateOrder(@PathVariable ("id") Long id, @RequestBody OrderRequest orderRequest) {
         Order updatedOrder = orderService.updateOrder(id, orderRequest);
         if (updatedOrder == null) {
             return ResponseEntity.notFound().build();
@@ -79,7 +79,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteOrder(@PathVariable ("id") Long id) {
         if (orderService.findById(id) == null) {
             return ResponseEntity.notFound().build();
         }
@@ -88,7 +88,7 @@ public class OrderController {
     }
 
     @GetMapping("/customer/{customerId}")
-    public List<OrderDTO> getOrdersByUser(@PathVariable Long customerId) {
+    public List<OrderDTO> getOrdersByUser(@PathVariable ("customerId") Long customerId) {
         List<Order> orders = orderService.findByCustomerId(customerId);
         if (orders == null || orders.isEmpty()) {
             return Collections.emptyList();
@@ -98,8 +98,8 @@ public class OrderController {
                 .collect(Collectors.toList());
     }
 
-    @PatchMapping("/updateOrderStatus/{id}")
-    public ResponseEntity<OrderDTO> updateOrderStatus(@PathVariable Long id, @RequestParam("status") OrderStatus status) {
+    @PatchMapping("/updateOrderStatus/{id}/{status}")
+    public ResponseEntity<OrderDTO> updateOrderStatus(@PathVariable ("id") Long id, @RequestParam("status") OrderStatus status) {
         Order updatedOrder = orderService.updateOrderStatus(id, status);
         if (updatedOrder == null) {
             return ResponseEntity.notFound().build();
