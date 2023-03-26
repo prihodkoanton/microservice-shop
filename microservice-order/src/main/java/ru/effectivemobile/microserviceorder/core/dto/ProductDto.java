@@ -22,7 +22,7 @@ public class ProductDto {
     private LocalDateTime updated;
 
     public static Product toProduct(ProductDto dto){
-        Product fromDto = new Product();
+        ru.effectivemobile.microserviceorder.core.model.Product fromDto = new ru.effectivemobile.microserviceorder.core.model.Product();
         fromDto.setName(dto.getName());
         fromDto.setDescription(dto.getDescription());
         fromDto.setPrice(dto.getPrice());
@@ -31,7 +31,7 @@ public class ProductDto {
         return  fromDto;
     }
 
-    public static ProductDto toDto (Product product){
+    public static ProductDto toDto (ru.effectivemobile.microserviceorder.core.model.Product product){
         ProductDto productDto = new ProductDto();
         productDto.setName(product.getName());
         productDto.setDescription(product.getDescription());

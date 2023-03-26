@@ -7,6 +7,7 @@ import ru.effectivemobile.microserviceorder.core.model.Product;
 import ru.effectivemobile.microserviceorder.repository.ProductRepository;
 import ru.effectivemobile.microserviceorder.service.ProductService;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -51,5 +52,22 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getByCreatedBetween(LocalDateTime startDate, LocalDateTime endDate) {
         return productRepository.findByCreatedBetween(startDate, endDate);
+    }
+
+    @Override
+    public Product create(Product product) {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public Product update(Long id, Product product) {
+        Product forUpdate = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Product for update with id: " + id + " doesn't find"));
+        forUpdate.setName(product.getName());
+        forUpdate.setDescription(product.getDescription());
+        forUpdate.setPrice(product.getPrice());
+        forUpdate.setCreated(product.getCreated());
+        forUpdate.setUpdated(product.getUpdated());
+        return productRepository.save(product);
     }
 }

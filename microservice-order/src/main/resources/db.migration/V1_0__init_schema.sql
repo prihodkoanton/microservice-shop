@@ -1,4 +1,4 @@
-CREATE TABLE products
+CREATE TABLE productDtos
 (
     id          BIGSERIAL      NOT NULL,
     name        VARCHAR(255)   NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE order_items
     quantity   integer   NOT NULL,
     order_id   bigint    NOT NULL,
     CONSTRAINT orderItem_pkey PRIMARY KEY (id),
-    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES productDtos (id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE
 );
 
@@ -67,5 +67,5 @@ CREATE TABLE order_products
     product_id bigint NOT NULL,
     CONSTRAINT order_products_pkey PRIMARY KEY (order_id, product_id),
     FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
+    FOREIGN KEY (product_id) REFERENCES productDtos (id) ON DELETE CASCADE
 );

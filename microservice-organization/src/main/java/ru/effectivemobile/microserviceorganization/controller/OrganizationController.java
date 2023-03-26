@@ -79,7 +79,7 @@ public class OrganizationController {
         return new ResponseEntity<>(createdDto, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<OrganizationDto> updateOrganization(@PathVariable Long id, @Valid @RequestBody OrganizationDto organizationDto) {
         Organization organization = OrganizationDto.toOrganization(organizationDto);
         organization.setId(id);
@@ -88,7 +88,7 @@ public class OrganizationController {
         return new ResponseEntity<>(updatedDto, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteOrganization(@PathVariable Long id) {
         organizationService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
         Set<OrderItem> orderItems = new HashSet<>();
         for (OrderItemRequest itemRequest : orderRequest.getOrderItems()) {
             Product product = productRepository.findById(itemRequest.getProductId())
-                    .orElseThrow(() -> new ProductNotFoundException("Product with id " + itemRequest.getProductId() + " not found."));
+                    .orElseThrow(() -> new ProductNotFoundException("ProductDto with id " + itemRequest.getProductId() + " not found."));
             if (!product.getPrice().equals(itemRequest.getPrice())) {
                 throw new ProductPriceNotMatchedException("Price of product with id " + itemRequest.getProductId() +
                         " doesn't match the price in the catalog.");

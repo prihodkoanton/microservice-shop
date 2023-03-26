@@ -20,5 +20,8 @@ server:
 logging:
   level:
     org:
+      hibernate: Error
       springframework:
+        web: DEBUG
         security: DEBUG
+    root: INFO

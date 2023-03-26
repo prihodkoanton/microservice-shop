@@ -1,6 +1,6 @@
 package ru.effectivemobile.microserviceorder.service;
 
-import org.springframework.stereotype.Service;
+
 import ru.effectivemobile.microserviceorder.core.model.Product;
 
 import java.math.BigDecimal;
@@ -17,5 +17,8 @@ public interface ProductService {
     List<Product> getByPrice(BigDecimal price);
     List<Product> getByCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
 
+    Product create(Product product);
+
+    Product update(Long id, Product product);
 
 }

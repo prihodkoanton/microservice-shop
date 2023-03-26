@@ -9,7 +9,7 @@ CREATE TABLE organizations
     updatedAt   TIMESTAMP    NOT NULL
 );
 
-CREATE TABLE products
+CREATE TABLE productDtos
 (
     id              SERIAL PRIMARY KEY,
     name            VARCHAR(255)   NOT NULL,
