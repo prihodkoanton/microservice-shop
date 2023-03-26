@@ -2,6 +2,7 @@ package ru.effectivemobile.microserviceorder.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import ru.effectivemobile.microserviceorder.core.model.Product;
 import ru.effectivemobile.microserviceorder.repository.ProductRepository;
 import ru.effectivemobile.microserviceorder.service.ProductService;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProductServiceImpl.class);
