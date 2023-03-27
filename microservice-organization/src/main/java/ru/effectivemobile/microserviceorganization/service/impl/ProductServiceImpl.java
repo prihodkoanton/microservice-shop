@@ -7,6 +7,7 @@ import ru.effectivemobile.microserviceorganization.model.ProductStatus;
 import ru.effectivemobile.microserviceorganization.repository.ProductRepository;
 import ru.effectivemobile.microserviceorganization.service.ProductService;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -49,5 +50,31 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findByOrganization(Organization organization) {
         return productRepository.findByOrganization(organization);
+    }
+
+    @Override
+    @Transactional
+    public Product create(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    @Transactional
+    public Product update(Long id, Product product) {
+        Product forUpdate = productRepository.findById(id).orElseThrow();
+        forUpdate.setName(product.getName());
+        forUpdate.setDescription(product.getDescription());
+        forUpdate.setPrice(product.getPrice());
+        forUpdate.setOrganization(product.getOrganization());
+        forUpdate.setProductStatus(product.getProductStatus());
+        forUpdate.setCreatedAt(product.getCreatedAt());
+        forUpdate.setUpdatedAt(product.getUpdatedAt());
+        return productRepository.save(forUpdate);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
 }

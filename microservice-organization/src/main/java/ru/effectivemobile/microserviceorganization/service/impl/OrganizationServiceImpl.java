@@ -55,6 +55,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         organizationRepository.deleteById(id);
     }

@@ -11,6 +11,7 @@ import ru.effectivemobile.microserviceauthentication.model.User;
 import ru.effectivemobile.microserviceauthentication.repository.UserRepository;
 import ru.effectivemobile.microserviceauthentication.service.UserService;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -48,14 +49,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
+    @Transactional
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
+    @Transactional
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
 
+    @Transactional
     public Optional<User> updateUser(Long id, User user) {
         if (userRepository.existsById(id)) {
             User updateUser = userRepository.findById(id).orElse(null);
@@ -70,6 +74,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Transactional
     public void increaseUserBalance(User user, BigDecimal amount) {
         BigDecimal currentBalance = user.getBalance();
         BigDecimal newBalance = currentBalance.add(amount);
@@ -77,6 +82,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Transactional
     public void decreaseUserBalance(User user, BigDecimal amount) {
         BigDecimal currentBalance = user.getBalance();
         BigDecimal newBalance = currentBalance.subtract(amount);
@@ -84,11 +90,13 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Transactional
     public void updateUserRole(User user, Role role) {
         user.setRole(role);
         userRepository.save(user);
     }
 
+    @Transactional
     public void updateUserPassword(User user, String password) {
         user.setPassword(password);
         userRepository.save(user);

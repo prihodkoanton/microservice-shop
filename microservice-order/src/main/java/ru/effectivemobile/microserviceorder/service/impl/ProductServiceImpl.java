@@ -55,8 +55,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public Product create(Product product) {
-        return null;
+        return productRepository.save(product);
     }
 
     @Override
@@ -69,5 +70,11 @@ public class ProductServiceImpl implements ProductService {
         forUpdate.setCreated(product.getCreated());
         forUpdate.setUpdated(product.getUpdated());
         return productRepository.save(product);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
 }

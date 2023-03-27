@@ -20,4 +20,8 @@ public interface ProductService {
     List<Product> findByOrganizationAndStatusProduct(Organization organization, ProductStatus productStatus);
 
     List<Product> findByOrganization(Organization organization);
+
+    Product create(Product product);
+    Product update(Long id,Product product);
+    void delete(Long id);
 }

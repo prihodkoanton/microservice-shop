@@ -68,10 +68,16 @@ public class ProductController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ProductDto> create(@Valid @RequestBody ProductDto dto){
         ProductDto result = ProductDto.toDto(productService.create(ProductDto.toProduct(dto)));
         return  ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id){
+        productService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 }

@@ -11,6 +11,7 @@ import ru.effectivemobile.microserviceorder.repository.OrganizationRepository;
 import ru.effectivemobile.microserviceorder.repository.ProductRepository;
 import ru.effectivemobile.microserviceorder.service.OrderService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -109,6 +110,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findByCustomerIdAndOrganizationIdAndStatus(customer, organization, status);
     }
 
+    @Transactional
     public Order updateOrder(Long id, OrderRequest orderRequest) {
         Order order = findById(id);
         order.setCustomer(customerRepository.findById(orderRequest.getCustomerId()).orElseThrow(() -> new CustomerNotFoundException("Customer with id " + orderRequest.getCustomerId() + " not found.")));
@@ -118,16 +120,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public Order updateOrderStatus(Long id, OrderStatus newStatus) {
         return orderRepository.updateStatus(id, newStatus);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         orderRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void delete(Order order) {
         orderRepository.delete(order);
     }
